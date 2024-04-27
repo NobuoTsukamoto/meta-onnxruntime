@@ -44,12 +44,12 @@ DEPENDS += "\
             python3 \
             python3-numpy \
             python3-pybind11 \
-            python3-native \
 "
 
 RDEPENDS:${PN} += " \
     python3 \
     python3-numpy \
+    python3-native \
 "
 
 inherit cmake python3-dir
