@@ -49,7 +49,6 @@ DEPENDS += "\
 RDEPENDS:${PN} += " \
     python3 \
     python3-numpy \
-    python3-native \
 "
 
 inherit cmake python3-dir
@@ -188,10 +187,15 @@ do_compile:append() {
 }
 
 do_install:append() {
+    install -d ${D}/${PYTHON_SITEPACKAGES_DIR}
+
     TAGING_INCDIR=${STAGING_INCDIR} \
     STAGING_LIBDIR=${STAGING_LIBDIR} \
     ${STAGING_BINDIR_NATIVE}/${PYTHON_PN}-native/${PYTHON_PN} -m pip install --disable-pip-version-check -v \
     -t ${D}/${PYTHON_SITEPACKAGES_DIR} --no-cache-dir --no-deps dist/onnxruntime-${DPV}-*.whl
+
+    sed -i '2s@.*@/usr/bin/python3@' ${D}/${PYTHON_SITEPACKAGES_DIR}/bin/onnxruntime_test
+    sed -i '3s/.*//' ${D}/${PYTHON_SITEPACKAGES_DIR}/bin/onnxruntime_test
 }
 
 FILES:${PN}-dev = " \
