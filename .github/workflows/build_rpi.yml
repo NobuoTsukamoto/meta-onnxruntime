@@ -64,5 +64,5 @@ jobs:
           bitbake-layers add-layer /home/runner/work/meta-openembedded/meta-python/
           bitbake-layers add-layer /home/runner/work/meta-onnxruntime/meta-onnxruntime/
           bitbake-layers add-layer /home/runner/work/meta-raspberrypi/
-          MACHINE=${{matrix.target_machine}} bitbake onnxruntime onnxruntime-python-label-image-example
+          MACHINE=${{matrix.target_machine}} bitbake onnxruntime
         working-directory: /mnt
