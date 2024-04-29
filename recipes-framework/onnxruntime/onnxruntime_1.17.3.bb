@@ -14,6 +14,7 @@ SRC_URI = " \
     git://github.com/microsoft/onnxruntime.git;name=onnxruntime;branch=rel-1.17.3;protocol=https \
     file://0001-fix_requirements.txt.patch \
     file://0001-modify_platform_cpp.patch \
+    file://0001-remove-onnxruntime_test.patch \
 "
 
 SRC_URI:append:raspberrypi3-64 = " \
@@ -193,9 +194,6 @@ do_install:append() {
     STAGING_LIBDIR=${STAGING_LIBDIR} \
     ${STAGING_BINDIR_NATIVE}/${PYTHON_PN}-native/${PYTHON_PN} -m pip install --disable-pip-version-check -v \
     -t ${D}/${PYTHON_SITEPACKAGES_DIR} --no-cache-dir --no-deps dist/onnxruntime-${DPV}-*.whl
-
-    sed -i '2s@.*@/usr/bin/python3@' ${D}/${PYTHON_SITEPACKAGES_DIR}/bin/onnxruntime_test
-    sed -i '3s/.*//' ${D}/${PYTHON_SITEPACKAGES_DIR}/bin/onnxruntime_test
 }
 
 FILES:${PN}-dev = " \

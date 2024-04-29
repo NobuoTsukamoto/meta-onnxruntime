@@ -1,0 +1,16 @@
+diff --git a/setup.py b/setup.py
+index e94165fdf9..c4b9b9754c 100644
+--- a/setup.py
++++ b/setup.py
+@@ -685,10 +685,6 @@ setup(
+     data_files=data_files,
+     install_requires=install_requires,
+     keywords="onnx machine learning",
+-    entry_points={
+-        "console_scripts": [
+-            "onnxruntime_test = onnxruntime.tools.onnxruntime_test:main",
+-        ]
+-    },
++    entry_points={},
+     classifiers=classifiers,
+ )
