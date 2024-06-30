@@ -1,0 +1,15 @@
+Upstream-Status: Pending
+
+diff --git a/cmake/CMakeLists.txt b/cmake/CMakeLists.txt
+index 61e0f7d6c5..e23225e6ee 100644
+--- a/cmake/CMakeLists.txt
++++ b/cmake/CMakeLists.txt
+@@ -1030,7 +1030,7 @@ function(onnxruntime_set_compile_flags target_name)
+         target_compile_options(${target_name} PRIVATE "-Wno-unused-parameter")
+       endif()
+       target_compile_definitions(${target_name} PUBLIC -DNSYNC_ATOMIC_CPP11)
+-      onnxruntime_add_include_to_target(${target_name} nsync::nsync_cpp)
++      target_link_libraries(${target_name} PRIVATE nsync::nsync_cpp)
+     endif()
+     foreach(ORT_FLAG ${ORT_PROVIDER_FLAGS})
+       target_compile_definitions(${target_name} PRIVATE ${ORT_FLAG})

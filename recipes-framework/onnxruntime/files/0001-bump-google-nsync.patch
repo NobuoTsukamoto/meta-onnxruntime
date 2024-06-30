@@ -1,0 +1,26 @@
+From 27641efeb469d9ad3330554d799adfd9c54d09d9 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Cl=C3=A9ment=20P=C3=A9ron?= <peron.clem@gmail.com>
+Date: Fri, 21 Jun 2024 10:35:45 +0200
+Subject: [PATCH] bump google nsync
+
+Upstream-Status: Pending
+---
+ cmake/deps.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/cmake/deps.txt b/cmake/deps.txt
+index 703988a151..be0f715f61 100644
+--- a/cmake/deps.txt
++++ b/cmake/deps.txt
+@@ -27,7 +27,7 @@ flatbuffers;https://github.com/google/flatbuffers/archive/refs/tags/v23.5.26.zip
+ fp16;https://github.com/Maratyszcza/FP16/archive/0a92994d729ff76a58f692d3028ca1b64b145d91.zip;b985f6985a05a1c03ff1bb71190f66d8f98a1494
+ fxdiv;https://github.com/Maratyszcza/FXdiv/archive/63058eff77e11aa15bf531df5dd34395ec3017c8.zip;a5658f4036402dbca7cebee32be57fb8149811e1
+ google_benchmark;https://github.com/google/benchmark/archive/refs/tags/v1.8.3.zip;bf9870756ee3f8d2d3b346b24ee3600a41c74d3d
+-google_nsync;https://github.com/google/nsync/archive/refs/tags/1.26.0.zip;5e7c00ef6bf5b787386fc040067903ec774e2752
++google_nsync;https://github.com/clementperon/nsync/archive/85f32f98cc32413afbf900c9f29fa7337f5f867b.zip;88141acc15b6a43934f4dec9c02ab33c1560c9cc
+ googletest;https://github.com/google/googletest/archive/530d5c8c84abd2a46f38583ee817743c9b3a42b4.zip;5e3a61db2aa975cfd0f97ba92c818744e7fa7034
+ googlexnnpack;https://github.com/google/XNNPACK/archive/0da379fc4808f9601faef392352018c741c0f297.zip;663883491e380b628e0a5b162b5f2658032fae73
+ json;https://github.com/nlohmann/json/archive/refs/tags/v3.10.5.zip;f257f8dc27c5b8c085dc887b40cddd18ae1f725c
+-- 
+2.39.3 (Apple Git-146)
+
