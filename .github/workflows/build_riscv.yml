@@ -28,7 +28,7 @@ jobs:
 
     strategy:
       matrix:
-        target_machine: [qemuriscv64]
+        target_machine: [qemuriscv64, qemuriscv32]
         onnxruntime_version: [1.21.0]
       fail-fast: false
 
