@@ -63,6 +63,10 @@ jobs:
             ${{ env.SSTATE_DIR }}
           key: cache-${{ matrix.target_machine }}-${{ env.TARGET_VERSION }}
 
+      - name: Check Disk Space
+        run: df -h
+        run: ls -al /mnt
+
       # checkout repository
       - name: Clone meta-riscv, openembedded-core, bitbake, meta-openembedded
         run: |
