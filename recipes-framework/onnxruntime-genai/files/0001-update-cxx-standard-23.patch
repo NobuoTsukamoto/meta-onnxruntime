@@ -1,0 +1,17 @@
+Upstream-Status: Pending
+---
+diff --git a/cmake/cxx_standard.cmake b/cmake/cxx_standard.cmake
+index 9ae00e5c..81775af8 100644
+--- a/cmake/cxx_standard.cmake
++++ b/cmake/cxx_standard.cmake
+@@ -9,6 +9,8 @@ elseif (ANDROID)
+     add_compile_definitions(USE_CXX17=1)
+     set(CMAKE_CXX_STANDARD 17)
+ else ()
+-    message("Test is using C++20")
+-    set(CMAKE_CXX_STANDARD 20)
++    message("Test is using C++23")
++    set(CMAKE_CXX_STANDARD 23)
++    set(CMAKE_CXX_STANDARD_REQUIRED ON)
++    set(CMAKE_CXX_EXTENSIONS OFF)
+ endif ()
