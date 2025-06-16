@@ -1,0 +1,17 @@
+Upstream-Status: Pending
+---
+diff --git a/cmake/global_variables.cmake b/cmake/global_variables.cmake
+index fe8ce067..5cd05e38 100644
+--- a/cmake/global_variables.cmake
++++ b/cmake/global_variables.cmake
+@@ -151,6 +151,10 @@ else()
+     set(genai_target_platform "x64")
+   elseif(CMAKE_SYSTEM_PROCESSOR MATCHES "powerpc")
+     set(genai_target_platform "powerpc")
++  elseif(CMAKE_SYSTEM_PROCESSOR MATCHES "riscv64")
++    set(genai_target_platform "riscv64")
++  elseif(CMAKE_SYSTEM_PROCESSOR MATCHES "riscv32")
++    set(genai_target_platform "riscv32")
+   else()
+     message(FATAL_ERROR "Unsupported architecture. CMAKE_SYSTEM_PROCESSOR: ${CMAKE_SYSTEM_PROCESSOR}")
+   endif()
