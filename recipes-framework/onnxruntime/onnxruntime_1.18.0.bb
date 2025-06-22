@@ -16,6 +16,7 @@ SRC_URI = " \
     file://0001-modify_platform_cpp.patch \
     file://0001-remove-onnxruntime_test.patch \
     file://0001-fix-tree_ensemble_aggregator-template-id-cdtor.patch \
+    file://0001-update-eigen-hash.patch \
 "
 
 SRC_URI:append:raspberrypi3-64 = " \
@@ -161,6 +162,7 @@ EXTRA_OECMAKE:append = " \
     -DCMAKE_INSTALL_PREFIX=/usr  \
     -DCMAKE_CXX_FLAGS=-Wno-error=maybe-uninitialize \
     -DCMAKE_CXX_FLAGS=-Wno-error=array-bounds \
+    -DCMAKE_CXX_FLAGS=-Wno-error=range-loop-construct \
     -DCMAKE_TLS_VERIFY=ON -DFETCHCONTENT_QUIET=OFF \
     -Donnxruntime_ENABLE_MEMLEAK_CHECKER=OFF \
     -DCMAKE_BUILD_TYPE=Release \
