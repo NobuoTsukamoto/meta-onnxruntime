@@ -1,0 +1,98 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Bitbake intel
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the main branch
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  schedule:
+    - cron: '0 12 * * 5'
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+env:
+  TARGET_VERSION: master
+  WORKING_DIR: /home/runner/work
+  BUILD_DIR: /mnt/build
+  DOWNLOAD_DIR: /mnt/build/downloads
+  SSTATE_DIR: /mnt/build/sstate-cache
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  bitbake-intel:
+
+    strategy:
+      matrix:
+        target_machine: [genericx86-64, intel-corei7-64, intel-skylake-64]
+        onnxruntime_version: [1.22.1]
+      fail-fast: false
+
+    # The type of runner that the job will run on
+    runs-on: ubuntu-22.04
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v4
+
+      # Install essential host packages
+      - name: Install Packages
+        run: |
+          sudo apt-get update
+          sudo apt-get -y install gawk wget git diffstat unzip texinfo gcc \
+            build-essential chrpath socat cpio python3 python3-pip python3-pexpect xz-utils \
+            debianutils iputils-ping python3-git python3-jinja2 \
+            pylint xterm zstd liblz4-tool
+          sudo apt-get clean
+
+      - name: Prepare build directory
+        run: |
+          sudo mkdir -p ${BUILD_DIR}
+          sudo chown runner ${BUILD_DIR}
+
+      - name: Restore cache
+        id: ccache-restore
+        uses: actions/cache/restore@v4
+        with:
+          path: |
+            ${{ env.SSTATE_DIR }}
+          key: cache-${{ matrix.target_machine }}-${{ env.TARGET_VERSION }}
+
+      # checkout repository
+      - name: Clone meta-intel, openembedded-core, bitbake, meta-openembedded
+        run: |
+          git clone --depth 1 -b ${TARGET_VERSION} https://github.com/YoeDistro/meta-intel.git
+          git clone --depth 1 -b ${TARGET_VERSION} git://git.yoctoproject.org/poky.git
+          git clone --depth 1 -b ${TARGET_VERSION} git://git.openembedded.org/meta-openembedded
+        working-directory: /home/runner/work
+
+      # Run bitbake
+      - name: Bitbake MACHINE=${{ matrix.target_machine }}, ONNX Runtime version ${{ matrix.onnxruntime_version }}
+        run: |
+          source ${WORKING_DIR}/poky/oe-init-build-env ${BUILD_DIR}
+          echo BB_NUMBER_THREADS = \"8\" >> conf/local.conf
+          echo DL_DIR ?= \"${WORKING_DIR}/downloads/\" >> conf/local.conf
+          bitbake-layers add-layer ${WORKING_DIR}/meta-openembedded/meta-oe
+          bitbake-layers add-layer ${WORKING_DIR}/meta-openembedded/meta-python
+          bitbake-layers add-layer ${WORKING_DIR}/meta-onnxruntime/meta-onnxruntime
+          bitbake-layers add-layer ${WORKING_DIR}/meta-intel
+          MACHINE=${{matrix.target_machine}} bitbake onnxruntime onnxruntime-genai huggingface-hub-native
+
+      # Remove all files that hasn't been access in 10 days
+      - name: Clean SState Cache
+        if: always()
+        run: |
+          test -d ${SSTATE_DIR} && find ${SSTATE_DIR} -type f -mtime +10 -delete
+
+      - name: Save cache
+        uses: actions/cache/save@v4
+        if: always()
+        with:
+          path: |
+            ${{ env.SSTATE_DIR }}
+          key: ${{ steps.ccache-restore.outputs.cache-primary-key }}
