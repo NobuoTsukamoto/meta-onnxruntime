@@ -40,7 +40,7 @@ Please note that it is not official support.
 - Examples
     - onnxruntime-python-label-image-example  
       [Python label image](recipes-examples/onnxruntime/onnxruntime-python-label-image-example.bb)
-    - onnxruntime-genai-python-exampl  
+    - onnxruntime-genai-python-example  
       [ONNX Runtime GenAI model_qa.py example](recipes-examples/onnxruntime-genai/onnxruntime-genai-python-example.bb)
 
 ## How to
