@@ -1,0 +1,14 @@
+Upstream-Status: Pending
+---
+
+--- hatchling-1.27.0-org/pyproject.toml	2020-02-02 09:00:00.000000000 +0900
++++ hatchling-1.27.0/pyproject.toml	2025-07-31 09:50:21.615632433 +0900
+@@ -37,7 +37,7 @@ classifiers = [
+ dependencies = [
+   "packaging>=24.2",
+   "pathspec>=0.10.1",
+-  "pluggy>=1.0.0",
++  "pluggy>=0.0.0",
+   "tomli>=1.2.2; python_version < '3.11'",
+   "trove-classifiers",
+ ]
