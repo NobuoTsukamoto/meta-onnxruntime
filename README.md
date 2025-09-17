@@ -13,9 +13,9 @@ Please note that it is not official support.
 
 | BSP | ONNX Runtime | ONNX Runtime generate API |Build status |
 | :-- | :-- | :-- | :-- |
-| [meta-raspberrypi](https://github.com/agherzan/meta-raspberrypi) | v1.22.2 | v0.9.1 |[![Bitbake raspberrypi](https://github.com/NobuoTsukamoto/meta-onnxruntime/actions/workflows/build_rpi.yml/badge.svg?branch=main)](https://github.com/NobuoTsukamoto/meta-onnxruntime/actions/workflows/build_rpi.yml) |
-| [meta-riscv](https://github.com/riscv/meta-riscv) | v1.22.2 | v0.9.1 | [![Bitbake riscv](https://github.com/NobuoTsukamoto/meta-onnxruntime/actions/workflows/build_riscv.yml/badge.svg?branch=main)](https://github.com/NobuoTsukamoto/meta-onnxruntime/actions/workflows/build_riscv.yml) |
-| [meta-intel](https://github.com/YoeDistro/meta-intel) | v1.22.2 | v0.9.1 |[![Bitbake intel](https://github.com/NobuoTsukamoto/meta-onnxruntime/actions/workflows/build_intel.yml/badge.svg?branch=main)](https://github.com/NobuoTsukamoto/meta-onnxruntime/actions/workflows/build_intel.yml) |
+| [meta-raspberrypi](https://github.com/agherzan/meta-raspberrypi) | v1.22.2 | v0.9.2 |[![Bitbake raspberrypi](https://github.com/NobuoTsukamoto/meta-onnxruntime/actions/workflows/build_rpi.yml/badge.svg?branch=main)](https://github.com/NobuoTsukamoto/meta-onnxruntime/actions/workflows/build_rpi.yml) |
+| [meta-riscv](https://github.com/riscv/meta-riscv) | v1.22.2 | v0.9.2 | [![Bitbake riscv](https://github.com/NobuoTsukamoto/meta-onnxruntime/actions/workflows/build_riscv.yml/badge.svg?branch=main)](https://github.com/NobuoTsukamoto/meta-onnxruntime/actions/workflows/build_riscv.yml) |
+| [meta-intel](https://github.com/YoeDistro/meta-intel) | v1.22.2 | v0.9.2 |[![Bitbake intel](https://github.com/NobuoTsukamoto/meta-onnxruntime/actions/workflows/build_intel.yml/badge.svg?branch=main)](https://github.com/NobuoTsukamoto/meta-onnxruntime/actions/workflows/build_intel.yml) |
 
 ### matrix
 
@@ -36,7 +36,7 @@ Please note that it is not official support.
     - onnxruntime  
       [ONNX Runtime](recipes-framework/onnxruntime/onnxruntime_1.22.2.bb)
     - onnxrintime-genai  
-      [ONNX Runtime generate API](recipes-framework/onnxruntime-genai/onnxruntime-genai_0.9.1.bb)
+      [ONNX Runtime generate API](recipes-framework/onnxruntime-genai/onnxruntime-genai_0.9.2.bb)
 - Examples
     - onnxruntime-python-label-image-example  
       [Python label image](recipes-examples/onnxruntime/onnxruntime-python-label-image-example.bb)

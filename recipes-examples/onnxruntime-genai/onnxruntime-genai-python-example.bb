@@ -4,10 +4,10 @@ LICENSE = "MIT"
 
 LIC_FILES_CHKSUM = "file://LICENSE;md5=d4a904ca135bb7bc912156fee12726f0"
 
-SRCREV = "41211b829cc9f5433839d305479a30abef525a5f"
+SRCREV = "fc6f8d7e7079c6a749a7a46910502fae57afa12c"
 
 SRC_URI = " \
-    git://github.com/microsoft/onnxruntime-genai;branch=rel-0.9.1;protocol=https \
+    git://github.com/microsoft/onnxruntime-genai;branch=rel-0.9.2;protocol=https \
 "
 
 DEPENDS = "\
