@@ -29,7 +29,7 @@ jobs:
     strategy:
       matrix:
         target_machine: [genericx86-64, intel-corei7-64, intel-skylake-64]
-        onnxruntime_version: [1.22.2]
+        onnxruntime_version: [1.23.0]
       fail-fast: false
 
     # The type of runner that the job will run on
