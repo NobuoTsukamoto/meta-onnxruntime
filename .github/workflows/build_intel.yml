@@ -81,7 +81,7 @@ jobs:
           bitbake-layers add-layer ${WORKING_DIR}/meta-openembedded/meta-python
           bitbake-layers add-layer ${WORKING_DIR}/meta-onnxruntime/meta-onnxruntime
           bitbake-layers add-layer ${WORKING_DIR}/meta-intel
-          MACHINE=${{matrix.target_machine}} bitbake onnxruntime onnxruntime-genai huggingface-hub-native
+          MACHINE=${{matrix.target_machine}} bitbake onnxruntime onnxruntime-genai onnxruntime-genai-python-example
 
       # Remove all files that hasn't been access in 10 days
       - name: Clean SState Cache
