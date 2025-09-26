@@ -10,20 +10,9 @@ SRC_URI = " \
     git://github.com/microsoft/onnxruntime-genai;branch=rel-0.9.2;protocol=https \
 "
 
-DEPENDS = "\
-    huggingface-hub-native \
-"
-
 RDEPENDS:${PN} = " \
     onnxruntime-genai \
 "
-
-do_configure[network] = "1"
-
-do_configure:append() {
-    mkdir -p ${S}/downloads
-    huggingface-cli download microsoft/Phi-4-mini-instruct-onnx --include cpu_and_mobile/cpu-int4-rtn-block-32-acc-level-4/* --local-dir ${S}/downloads
-}
 
 do_install:append() {
     install -d ${D}${datadir}/onnxruntime_genai
@@ -31,10 +20,6 @@ do_install:append() {
     install -d ${D}${datadir}/onnxruntime_genai/examples/python
     install -m 644 ${S}/examples/python/model-qa.py ${D}${datadir}/onnxruntime_genai/examples/python/
     install -m 644 ${S}/examples/python/phi3-qa.py ${D}${datadir}/onnxruntime_genai/examples/python/
-
-    install -d ${D}${datadir}/onnxruntime_genai/examples/python/cpu_and_mobile/
-    install -d ${D}${datadir}/onnxruntime_genai/examples/python/cpu_and_mobile/cpu-int4-rtn-block-32-acc-level-4
-    install -m 644 ${S}/downloads/cpu_and_mobile/cpu-int4-rtn-block-32-acc-level-4/* ${D}${datadir}/onnxruntime_genai/examples/python/cpu_and_mobile/cpu-int4-rtn-block-32-acc-level-4/
 }
 
 FILES:${PN} += "${datadir}/onnxruntime_genai/examples/*"
