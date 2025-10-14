@@ -29,7 +29,8 @@ jobs:
     strategy:
       matrix:
         target_machine: [qemuriscv64]
-        onnxruntime_version: [1.23.0]
+        onnxruntime_version: [1.23.1]
+        onnxruntime_genai_version: [0.10.0]
       fail-fast: false
 
     # The type of runner that the job will run on
@@ -73,7 +74,7 @@ jobs:
         working-directory: /home/runner/work
 
       # Run bitbake
-      - name: Bitbake MACHINE=${{ matrix.target_machine }}, ONNX Runtime version ${{ matrix.onnxruntime_version }}
+      - name: Bitbake MACHINE=${{ matrix.target_machine }}, ONNX Runtime version ${{ matrix.onnxruntime_version }}, ORT GenAI version ${{ matrix.onnxruntime_genai_version }}
         run: |
           source ${WORKING_DIR}/openembedded-core/oe-init-build-env ${BUILD_DIR}
           echo BB_NUMBER_THREADS = \"8\" >> conf/local.conf
