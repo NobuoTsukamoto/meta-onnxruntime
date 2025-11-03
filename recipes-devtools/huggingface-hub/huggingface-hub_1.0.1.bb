@@ -16,4 +16,7 @@ RDEPENDS:${PN} = " \
     python3-tqdm \
     python3-pyyaml \
     python3-filelock \
+    python3-click \
+    python3-typer \
+    python3-httpx \
 "
