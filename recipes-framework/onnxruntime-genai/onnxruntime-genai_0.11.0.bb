@@ -8,10 +8,10 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=d4a904ca135bb7bc912156fee12726f0"
 BPV = "${@'.'.join(d.getVar('PV').split('.')[0:2])}"
 DPV = "${@'.'.join(d.getVar('PV').split('.')[0:3])}"
 
-SRCREV = "6deb570f75adb833780dfd3a1882446a0cd4a93f"
+SRCREV = "e0e02a9d388bcc6929929241e1ec9e9c0c28c8f2"
 
 SRC_URI = " \
-    git://github.com/microsoft/onnxruntime-genai;branch=rel-0.10.0;protocol=https \
+    git://github.com/microsoft/onnxruntime-genai;branch=rel-0.11.0;protocol=https \
     file://0001-set-ORT_HEADER_DIR-genai.patch \
     file://0001-update-cxx-standard-23.patch \
     file://0001-Fix-ambiguous-cpu_span-constructor-call.patch \

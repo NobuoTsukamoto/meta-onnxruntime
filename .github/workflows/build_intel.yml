@@ -30,7 +30,7 @@ jobs:
       matrix:
         target_machine: [genericx86-64, intel-corei7-64, intel-skylake-64]
         onnxruntime_version: [1.23.2]
-        onnxruntime_genai_version: [0.10.0]
+        onnxruntime_genai_version: [0.11.0]
       fail-fast: false
 
     # The type of runner that the job will run on
