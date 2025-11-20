@@ -69,11 +69,11 @@ jobs:
       # checkout repository
       - name: Clone poky, meta-raspberrypi, meta-openembedded
         run: |
-          git clone --depth 1 -b ${TARGET_VERSION} git://git.yoctoproject.org/poky.git
+          git clone --depth 1 -b ${TARGET_VERSION} git://git.yoctoproject.org/meta-raspberrypi
           git clone --depth 1 -b ${TARGET_VERSION} https://github.com/openembedded/openembedded-core.git
           git clone --depth 1 -b ${TARGET_VERSION} https://github.com/openembedded/bitbake.git
           git clone --depth 1 -b ${TARGET_VERSION} https://github.com/openembedded/meta-openembedded.git
-         working-directory: ${{ env.WORKING_DIR }}
+        working-directory: ${{ env.WORKING_DIR }}
 
       # Run bitbake
       - name: Bitbake MACHINE=${{ matrix.target_machine }}, ONNX Runtime version ${{ matrix.onnxruntime_version }}, ORT GenAI version ${{ matrix.onnxruntime_genai_version }}
