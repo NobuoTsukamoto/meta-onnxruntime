@@ -13,9 +13,9 @@ Please note that it is not official support.
 
 | BSP | ONNX Runtime | ONNX Runtime generate API |Build status |
 | :-- | :-- | :-- | :-- |
-| [meta-raspberrypi](https://github.com/agherzan/meta-raspberrypi) | v1.23.2 | v0.11.0 |[![Bitbake raspberrypi](https://github.com/NobuoTsukamoto/meta-onnxruntime/actions/workflows/build_rpi.yml/badge.svg?branch=main)](https://github.com/NobuoTsukamoto/meta-onnxruntime/actions/workflows/build_rpi.yml) |
-| [meta-riscv](https://github.com/riscv/meta-riscv) | v1.23.2 | v0.11.0 | [![Bitbake riscv](https://github.com/NobuoTsukamoto/meta-onnxruntime/actions/workflows/build_riscv.yml/badge.svg?branch=main)](https://github.com/NobuoTsukamoto/meta-onnxruntime/actions/workflows/build_riscv.yml) |
-| [meta-intel](https://github.com/YoeDistro/meta-intel) | v1.23.2 | v0.11.0 |[![Bitbake intel](https://github.com/NobuoTsukamoto/meta-onnxruntime/actions/workflows/build_intel.yml/badge.svg?branch=main)](https://github.com/NobuoTsukamoto/meta-onnxruntime/actions/workflows/build_intel.yml) |
+| [meta-raspberrypi](https://github.com/agherzan/meta-raspberrypi) | v1.23.2 | v0.11.1 |[![Bitbake raspberrypi](https://github.com/NobuoTsukamoto/meta-onnxruntime/actions/workflows/build_rpi.yml/badge.svg?branch=main)](https://github.com/NobuoTsukamoto/meta-onnxruntime/actions/workflows/build_rpi.yml) |
+| [meta-riscv](https://github.com/riscv/meta-riscv) | v1.23.2 | v0.11.1 | [![Bitbake riscv](https://github.com/NobuoTsukamoto/meta-onnxruntime/actions/workflows/build_riscv.yml/badge.svg?branch=main)](https://github.com/NobuoTsukamoto/meta-onnxruntime/actions/workflows/build_riscv.yml) |
+| [meta-intel](https://github.com/YoeDistro/meta-intel) | v1.23.2 | v0.11.1 |[![Bitbake intel](https://github.com/NobuoTsukamoto/meta-onnxruntime/actions/workflows/build_intel.yml/badge.svg?branch=main)](https://github.com/NobuoTsukamoto/meta-onnxruntime/actions/workflows/build_intel.yml) |
 
 ### matrix
 
