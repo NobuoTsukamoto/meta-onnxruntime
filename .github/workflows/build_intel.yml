@@ -28,7 +28,7 @@ jobs:
 
     strategy:
       matrix:
-        target_machine: [genericx86-64, intel-corei7-64, intel-skylake-64]
+        target_machine: [intel-corei7-64, intel-skylake-64]
         onnxruntime_version: [1.23.2]
         onnxruntime_genai_version: [0.11.2]
       fail-fast: false
