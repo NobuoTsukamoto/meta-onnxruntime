@@ -68,14 +68,15 @@ jobs:
       - name: Clone meta-intel, openembedded-core, bitbake, meta-openembedded
         run: |
           git clone --depth 1 -b ${TARGET_VERSION} https://github.com/YoeDistro/meta-intel.git
-          git clone --depth 1 -b ${TARGET_VERSION} git://git.yoctoproject.org/poky.git
-          git clone --depth 1 -b ${TARGET_VERSION} git://git.openembedded.org/meta-openembedded
+          git clone --depth 1 -b ${TARGET_VERSION} https://github.com/openembedded/openembedded-core.git
+          git clone --depth 1 -b ${TARGET_VERSION} https://github.com/openembedded/bitbake.git
+          git clone --depth 1 -b ${TARGET_VERSION} https://github.com/openembedded/meta-openembedded.git
         working-directory: /home/runner/work
 
       # Run bitbake
       - name: Bitbake MACHINE=${{ matrix.target_machine }}, ONNX Runtime version ${{ matrix.onnxruntime_version }}, ORT GenAI version ${{ matrix.onnxruntime_genai_version }}
         run: |
-          source ${WORKING_DIR}/poky/oe-init-build-env ${BUILD_DIR}
+          source ${WORKING_DIR}/openembedded-core/oe-init-build-env ${BUILD_DIR}
           echo BB_NUMBER_THREADS = \"8\" >> conf/local.conf
           echo DL_DIR ?= \"${WORKING_DIR}/downloads/\" >> conf/local.conf
           bitbake-layers add-layer ${WORKING_DIR}/meta-openembedded/meta-oe
