@@ -30,7 +30,7 @@ jobs:
       matrix:
         target_machine: [qemuriscv64]
         onnxruntime_version: [1.23.2]
-        onnxruntime_genai_version: [0.11.3]
+        onnxruntime_genai_version: [0.11.4]
       fail-fast: false
 
     # The type of runner that the job will run on
