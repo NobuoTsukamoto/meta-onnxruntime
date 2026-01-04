@@ -70,6 +70,7 @@ EXTRA_OECMAKE:append = " \
  "
 
 do_configure[network] = "1"
+do_compile[network] = "1"
 
 do_compile:append() {
     cd ${WORKDIR}/build/wheel
