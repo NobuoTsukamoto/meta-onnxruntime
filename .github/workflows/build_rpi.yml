@@ -17,7 +17,6 @@ on:
 
 env:
   TARGET_VERSION: walnascar
-  TARGET_RASPI_VERSION: master
   WORKING_DIR: /home/runner/work
   BUILD_DIR: /mnt/build
   DOWNLOAD_DIR: /mnt/build/downloads
@@ -70,7 +69,7 @@ jobs:
       - name: Clone poky, meta-raspberrypi, meta-openembedded
         run: |
           git clone --depth 1 -b ${TARGET_VERSION} git://git.yoctoproject.org/poky.git
-          git clone --depth 1 -b ${TARGET_RASPI_VERSION} git://git.yoctoproject.org/meta-raspberrypi
+          git clone --depth 1 -b ${TARGET_VERSION} git://git.yoctoproject.org/meta-raspberrypi
           git clone --depth 1 -b ${TARGET_VERSION} git://git.openembedded.org/meta-openembedded
         working-directory: ${{ env.WORKING_DIR }}
 
