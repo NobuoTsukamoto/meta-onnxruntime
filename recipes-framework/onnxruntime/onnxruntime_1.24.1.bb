@@ -157,6 +157,7 @@ do_install:append() {
     STAGING_LIBDIR=${STAGING_LIBDIR} \
     ${STAGING_BINDIR_NATIVE}/${PYTHON_PN}-native/${PYTHON_PN} -m pip install --disable-pip-version-check -v \
     -t ${D}/${PYTHON_SITEPACKAGES_DIR} --no-cache-dir --no-deps dist/onnxruntime-${DPV}-*.whl
+    chown -R root:root ${D}${PYTHON_SITEPACKAGES_DIR}
 }
 
 FILES:${PN}-dev = " \

@@ -146,6 +146,7 @@ do_install() {
 
     install -m 0755 ${B}/onnxruntime_test_all ${D}${datadir}/onnxruntime/test/
     cp -r ${B}/testdata/* ${D}${datadir}/onnxruntime/test/testdata/
+    chown -R root:root ${D}${datadir}/onnxruntime/test/testdata
 }
 
 FILES:${PN} += "${datadir}/onnxruntime/test/onnxruntime_test_all"
