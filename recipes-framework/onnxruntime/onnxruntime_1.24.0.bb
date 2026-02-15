@@ -8,10 +8,10 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=0f7e3b1308cb5c00b372a6e78835732d"
 BPV = "${@'.'.join(d.getVar('PV').split('.')[0:2])}"
 DPV = "${@'.'.join(d.getVar('PV').split('.')[0:3])}"
 
-SRCREV = "a83fc4d58cb48eb68890dd689f94f28288cf2278"
+SRCREV = "470ae16099a74fe05e31f2530489332c0525edb5"
 
 SRC_URI = " \
-    git://github.com/microsoft/onnxruntime.git;branch=rel-1.23.2;protocol=https \
+    git://github.com/microsoft/onnxruntime.git;branch=rel-1.24.0;protocol=https \
     file://0001-remove-onnxruntime_test.patch \
     file://0001-arm64-force-mcpu-to-be-valid.patch \
     file://0001-remove-numpy-dependency-from_cmake.patch \
@@ -21,11 +21,11 @@ SRC_URI = " \
 "
 
 DEPENDS += "\
-            python3-pip-native \
-            python3-wheel-native \
-            python3 \
-            python3-numpy \
-            python3-pybind11 \
+    python3-pip-native \
+    python3-wheel-native \
+    python3 \
+    python3-numpy \
+    python3-pybind11 \
 "
 
 RDEPENDS:${PN} += " \
