@@ -19,7 +19,6 @@ do_install:append() {
     install -d ${D}${datadir}/onnxruntime_genai/examples
     install -d ${D}${datadir}/onnxruntime_genai/examples/python
     install -m 644 ${S}/examples/python/model-qa.py ${D}${datadir}/onnxruntime_genai/examples/python/
-    install -m 644 ${S}/examples/python/phi3-qa.py ${D}${datadir}/onnxruntime_genai/examples/python/
 }
 
 FILES:${PN} += "${datadir}/onnxruntime_genai/examples/*"
