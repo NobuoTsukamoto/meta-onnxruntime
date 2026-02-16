@@ -86,6 +86,8 @@ do_install:append() {
     -t ${D}/${PYTHON_SITEPACKAGES_DIR} --no-cache-dir --no-deps wheel/onnxruntime_genai-${DPV}-*.whl
 
     rm -f ${D}${PYTHON_SITEPACKAGES_DIR}/onnxruntime_genai/libonnxruntime-genai.so
+
+    chown -R root:root ${D}${PYTHON_SITEPACKAGES_DIR}
 }
 
 FILES:${PN} += " \
