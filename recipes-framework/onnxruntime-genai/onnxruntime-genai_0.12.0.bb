@@ -8,10 +8,10 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=d4a904ca135bb7bc912156fee12726f0"
 BPV = "${@'.'.join(d.getVar('PV').split('.')[0:2])}"
 DPV = "${@'.'.join(d.getVar('PV').split('.')[0:3])}"
 
-SRCREV = "a8a6136854e9de6128ae99d930258b586555ed23"
+SRCREV = "f3a57ba8a904477f6c4ae786af9055bdeb65a621"
 
 SRC_URI = " \
-    git://github.com/microsoft/onnxruntime-genai;branch=rel-0.11.4;protocol=https \
+    git://github.com/microsoft/onnxruntime-genai;branch=rel-0.12.0;protocol=https \
     file://0001-set-ORT_HEADER_DIR-genai.patch \
     file://0001-update-cxx-standard-23.patch \
     file://0001-Fix-ambiguous-cpu_span-constructor-call.patch \
@@ -86,6 +86,8 @@ do_install:append() {
     -t ${D}/${PYTHON_SITEPACKAGES_DIR} --no-cache-dir --no-deps wheel/onnxruntime_genai-${DPV}-*.whl
 
     rm -f ${D}${PYTHON_SITEPACKAGES_DIR}/onnxruntime_genai/libonnxruntime-genai.so
+
+    chown -R root:root ${D}${PYTHON_SITEPACKAGES_DIR}
 }
 
 FILES:${PN} += " \
