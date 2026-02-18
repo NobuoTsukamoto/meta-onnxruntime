@@ -16,6 +16,7 @@ SRC_URI = " \
     file://0001-arm64-force-mcpu-to-be-valid.patch \
     file://0001-remove-numpy-dependency-from_cmake.patch \
     file://0001-set-cmake-policy-version-minimul-in-dlpack.patch \
+    file://0001-Set-stack-non-executable-for-onnxruntime_pybind11_st.patch \
 "
 
 DEPENDS += "\
