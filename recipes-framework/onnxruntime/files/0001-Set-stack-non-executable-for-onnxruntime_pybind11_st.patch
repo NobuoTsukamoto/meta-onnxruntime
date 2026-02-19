@@ -1,0 +1,35 @@
+From e6f941de2c336468ae8356f88ee7b173d626eedf Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Zolt=C3=A1n=20B=C3=B6sz=C3=B6rm=C3=A9nyi?=
+ <zboszor@gmail.com>
+Date: Wed, 18 Feb 2026 13:24:58 +0100
+Subject: [PATCH] Set stack non-executable for onnxruntime_pybind11_state.so
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+Signed-off-by: Zoltán Böszörményi <zboszor@gmail.com>
+Upstream-Status: Submitted [https://github.com/microsoft/onnxruntime/pull/27377]
+---
+ cmake/onnxruntime_python.cmake | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/cmake/onnxruntime_python.cmake b/cmake/onnxruntime_python.cmake
+index 3161e0140f..e06bd102a9 100644
+--- a/cmake/onnxruntime_python.cmake
++++ b/cmake/onnxruntime_python.cmake
+@@ -129,10 +129,10 @@ if(APPLE)
+   target_link_options(onnxruntime_pybind11_state PRIVATE  "LINKER:-exported_symbols_list,${ONNXRUNTIME_ROOT}/python/exported_symbols.lst")
+ elseif(UNIX)
+   if (onnxruntime_ENABLE_EXTERNAL_CUSTOM_OP_SCHEMAS)
+-    target_link_options(onnxruntime_pybind11_state PRIVATE  "LINKER:--version-script=${ONNXRUNTIME_ROOT}/python/version_script_expose_onnx_protobuf.lds" "LINKER:--gc-sections")
++    target_link_options(onnxruntime_pybind11_state PRIVATE  "LINKER:--version-script=${ONNXRUNTIME_ROOT}/python/version_script_expose_onnx_protobuf.lds" "LINKER:--gc-sections" "LINKER:-z,noexecstack")
+   else()
+     if (NOT CMAKE_SYSTEM_NAME MATCHES "AIX")
+-      target_link_options(onnxruntime_pybind11_state PRIVATE  "LINKER:--version-script=${ONNXRUNTIME_ROOT}/python/version_script.lds" "LINKER:--gc-sections")
++      target_link_options(onnxruntime_pybind11_state PRIVATE  "LINKER:--version-script=${ONNXRUNTIME_ROOT}/python/version_script.lds" "LINKER:--gc-sections" "LINKER:-z,noexecstack")
+     endif()
+   endif()
+ else()
+-- 
+2.53.0
+
