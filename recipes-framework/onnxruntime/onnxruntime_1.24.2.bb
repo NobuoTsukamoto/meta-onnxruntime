@@ -8,10 +8,10 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=0f7e3b1308cb5c00b372a6e78835732d"
 BPV = "${@'.'.join(d.getVar('PV').split('.')[0:2])}"
 DPV = "${@'.'.join(d.getVar('PV').split('.')[0:3])}"
 
-SRCREV = "470ae16099a74fe05e31f2530489332c0525edb5"
+SRCREV = "058787ceead760166e3c50a0a4cba8a833a6f53f"
 
 SRC_URI = " \
-    git://github.com/microsoft/onnxruntime.git;branch=rel-1.24.1;protocol=https \
+    git://github.com/microsoft/onnxruntime.git;branch=rel-1.24.2;protocol=https \
     file://0001-remove-onnxruntime_test.patch \
     file://0001-arm64-force-mcpu-to-be-valid.patch \
     file://0001-remove-numpy-dependency-from_cmake.patch \
