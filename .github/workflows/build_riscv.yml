@@ -77,7 +77,7 @@ jobs:
       - name: Bitbake MACHINE=${{ matrix.target_machine }}, ONNX Runtime version ${{ matrix.onnxruntime_version }}, ORT GenAI version ${{ matrix.onnxruntime_genai_version }}
         run: |
           source ${WORKING_DIR}/openembedded-core/oe-init-build-env ${BUILD_DIR}
-          echo BB_NUMBER_THREADS = \"8\" >> conf/local.conf
+          echo BB_NUMBER_THREADS = \"2\" >> conf/local.conf
           echo DL_DIR ?= \"${WORKING_DIR}/downloads/\" >> conf/local.conf
           bitbake-layers add-layer ${WORKING_DIR}/meta-openembedded/meta-oe
           bitbake-layers add-layer ${WORKING_DIR}/meta-openembedded/meta-python
