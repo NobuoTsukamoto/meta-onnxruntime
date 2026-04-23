@@ -78,6 +78,7 @@ jobs:
         run: |
           source ${WORKING_DIR}/openembedded-core/oe-init-build-env ${BUILD_DIR}
           echo BB_NUMBER_THREADS = \"1\" >> conf/local.conf
+          echo PARALLEL_MAKE = \"-j 2\" >> conf/local.conf
           echo DL_DIR ?= \"${WORKING_DIR}/downloads/\" >> conf/local.conf
           bitbake-layers add-layer ${WORKING_DIR}/meta-openembedded/meta-oe
           bitbake-layers add-layer ${WORKING_DIR}/meta-openembedded/meta-python
