@@ -1,12 +1,12 @@
 Upstream-Status: Pending
 ---
 diff --git a/setup.py b/setup.py
-index ced2f28e387..0ac982af0fe 100644
+index 056dcd97460..c7c23db2ed8 100644
 --- a/setup.py
 +++ b/setup.py
-@@ -791,10 +791,6 @@ setup(
+@@ -882,10 +882,6 @@ setup(
      extras_require=extras_require,
-     python_requires=">=3.10",
+     python_requires=">=3.11",
      keywords="onnx machine learning",
 -    entry_points={
 -        "console_scripts": [
