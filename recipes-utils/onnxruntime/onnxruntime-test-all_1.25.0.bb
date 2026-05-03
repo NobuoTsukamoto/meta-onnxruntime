@@ -14,6 +14,7 @@ SRC_URI = " \
     git://github.com/microsoft/onnxruntime.git;name=onnxruntime;branch=rel-1.25.0;protocol=https \
     file://0001-arm64-force-mcpu-to-be-valid.patch \
     file://0001-set-cmake-policy-version-minimul-in-dlpack.patch \
+    file://0001-remove-onnxruntime_test.patch \
 "
 
 inherit cmake 
