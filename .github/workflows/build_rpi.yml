@@ -69,7 +69,7 @@ jobs:
       # checkout repository
       - name: Clone poky, meta-raspberrypi, meta-openembedded
         run: |
-          git clone --depth 1 -b ${TARGET_VERSION} git://git.yoctoproject.org/meta-raspberrypi
+          git clone --depth 1 -b ${TARGET_VERSION} https://github.com/agherzan/meta-raspberrypi.git
           git clone --depth 1 -b ${TARGET_VERSION} https://github.com/openembedded/openembedded-core.git
           git clone --depth 1 -b ${TARGET_VERSION} https://github.com/openembedded/bitbake.git
           git clone --depth 1 -b ${TARGET_VERSION} https://github.com/openembedded/meta-openembedded.git
