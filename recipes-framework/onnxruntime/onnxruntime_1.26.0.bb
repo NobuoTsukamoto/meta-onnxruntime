@@ -144,6 +144,7 @@ EXTRA_OECMAKE:append = " \
 
 CXXFLAGS:append = " \
     -Wno-error=maybe-uninitialized \
+    -Wno-error=uninitialized \
     -Wno-error=array-bounds \
     -Wno-error=deprecated-enum-enum-conversion \
     -Wno-error=free-nonheap-object \
