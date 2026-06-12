@@ -46,6 +46,16 @@ OECMAKE_C_FLAGS_RELEASE += "-I${PYTHON_INCLUDE_DIR} -I${PYBIND11_INCLUDE} -I${NU
 OECMAKE_CXX_FLAGS += "-I${PYTHON_INCLUDE_DIR} -I${PYBIND11_INCLUDE} -I${NUMPY_INCLUDE}"
 OECMAKE_CXX_FLAGS_RELEASE += "-I${PYTHON_INCLUDE_DIR} -I${PYBIND11_INCLUDE} -I${NUMPY_INCLUDE}"
 
+ONNXRUNTIME_TARGET_PLATFORM:x86-64 = "x64"
+ONNXRUNTIME_TARGET_PLATFORM:aarch64 = "ARM64"
+ONNXRUNTIME_TARGET_PLATFORM:arm = "ARM"
+ONNXRUNTIME_TARGET_PLATFORM:riscv64 = "riscv64"
+ONNXRUNTIME_TARGET_PLATFORM ?= ""
+
+EXTRA_OECMAKE:append = " \
+    ${@' -Donnxruntime_target_platform=' + d.getVar('ONNXRUNTIME_TARGET_PLATFORM') if d.getVar('ONNXRUNTIME_TARGET_PLATFORM') else ''} \
+"
+
 EXTRA_OECMAKE:append = " \
     -DCMAKE_CXX_STANDARD=23 \
     -Donnxruntime_RUN_ONNX_TESTS=OFF \
@@ -124,17 +134,20 @@ EXTRA_OECMAKE:append = " \
     -Donnxruntime_USE_TRITON_KERNEL=OFF \
     -Donnxruntime_DISABLE_FLOAT8_TYPES=OFF \
     -DCMAKE_INSTALL_PREFIX=/usr  \
-    -DCMAKE_CXX_FLAGS=-Wno-error=maybe-uninitialize \
-    -DCMAKE_CXX_FLAGS=-Wno-error=array-bounds \
-    -DCMAKE_CXX_FLAGS=-Wno-error=deprecated-enum-enum-conversion \
     -DCMAKE_TLS_VERIFY=ON -DFETCHCONTENT_QUIET=OFF \
     -Donnxruntime_ENABLE_MEMLEAK_CHECKER=OFF \
     -DCMAKE_BUILD_TYPE=Release \
-    -DCMAKE_PREFIX_PATH=${WORKDIR}/git/build/Linux/Release/installed \
-    -Donnxruntime_target_platform=ARM \
     -DMLAS_SOURCE_IS_NOT_SET=OFF \
     -DFETCHCONTENT_FULLY_DISCONNECTED=OFF \
     -Donnxruntime_BUILD_UNIT_TESTS=OFF \
+"
+
+CXXFLAGS:append = " \
+    -Wno-error=maybe-uninitialized \
+    -Wno-error=uninitialized \
+    -Wno-error=array-bounds \
+    -Wno-error=deprecated-enum-enum-conversion \
+    -Wno-error=free-nonheap-object \
 "
 
 EXTRA_OECMAKE:append:raspberrypi5 = " \

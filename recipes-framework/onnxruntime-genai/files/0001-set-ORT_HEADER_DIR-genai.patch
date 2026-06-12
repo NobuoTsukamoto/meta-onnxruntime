@@ -1,10 +1,10 @@
 Upstream-Status: Pending
 ---
 diff --git a/cmake/ortlib.cmake b/cmake/ortlib.cmake
-index 328877b9..cbe30f7c 100644
+index 65a48aae..b900f073 100644
 --- a/cmake/ortlib.cmake
 +++ b/cmake/ortlib.cmake
-@@ -16,7 +16,7 @@ if(ORT_HOME)
+@@ -72,7 +72,7 @@ if(ORT_HOME)
      set(ORT_HEADER_DIR ${ORT_HOME}/include/onnxruntime)
      set(ORT_LIB_DIR ${ORT_HOME}/lib)
    else()
