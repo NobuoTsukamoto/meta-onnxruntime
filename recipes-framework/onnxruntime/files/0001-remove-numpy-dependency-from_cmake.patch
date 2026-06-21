@@ -1,14 +1,17 @@
 Upstream-Status: Pending
 ---
+ cmake/onnxruntime_python.cmake | 1 -
+ 1 file changed, 1 deletion(-)
+
 diff --git a/cmake/onnxruntime_python.cmake b/cmake/onnxruntime_python.cmake
-index aee6d2ff765..67abd12134d 100644
+index de1d7559a1..99fbe692d1 100644
 --- a/cmake/onnxruntime_python.cmake
 +++ b/cmake/onnxruntime_python.cmake
-@@ -205,7 +205,6 @@ target_link_libraries(onnxruntime_pybind11_state PRIVATE
+@@ -228,7 +228,6 @@ target_link_libraries(onnxruntime_pybind11_state PRIVATE
      onnxruntime_common
      onnxruntime_flatbuffers
      ${pybind11_lib}
 -    Python::NumPy
  )
- set(onnxruntime_pybind11_state_dependencies
-     ${onnxruntime_EXTERNAL_DEPENDENCIES}
+
+ # Starting with Python 3.8 on Windows, PATH environment variable are no longer used to resolve DLL dependencies
