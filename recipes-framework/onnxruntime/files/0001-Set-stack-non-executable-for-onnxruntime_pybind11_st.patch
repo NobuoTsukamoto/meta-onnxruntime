@@ -14,10 +14,10 @@ Upstream-Status: Submitted [https://github.com/microsoft/onnxruntime/pull/27377]
  1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/cmake/onnxruntime_python.cmake b/cmake/onnxruntime_python.cmake
-index 3161e0140f..e06bd102a9 100644
+index 99fbe692d1..b7f4dae30d 100644
 --- a/cmake/onnxruntime_python.cmake
 +++ b/cmake/onnxruntime_python.cmake
-@@ -129,10 +129,10 @@ if(APPLE)
+@@ -135,10 +135,10 @@ if(APPLE)
    target_link_options(onnxruntime_pybind11_state PRIVATE  "LINKER:-exported_symbols_list,${ONNXRUNTIME_ROOT}/python/exported_symbols.lst")
  elseif(UNIX)
    if (onnxruntime_ENABLE_EXTERNAL_CUSTOM_OP_SCHEMAS)
@@ -30,6 +30,3 @@ index 3161e0140f..e06bd102a9 100644
      endif()
    endif()
  else()
--- 
-2.53.0
-
