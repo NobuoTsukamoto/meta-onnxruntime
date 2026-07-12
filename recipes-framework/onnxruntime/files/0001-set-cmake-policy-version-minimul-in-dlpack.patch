@@ -14,3 +14,4 @@ index f523fefdd1..da22c79a7e 100644
 +  set(CMAKE_POLICY_VERSION_MINIMUM 3.5)
    onnxruntime_fetchcontent_makeavailable(dlpack)
  endif()
+ 
