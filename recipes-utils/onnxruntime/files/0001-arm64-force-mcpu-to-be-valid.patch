@@ -5,11 +5,14 @@ Subject: [PATCH] arm64: force -mcpu to be valid
 
 Upstream-Status: Submitted [https://github.com/microsoft/onnxruntime/pull/21117]
 ---
+ cmake/onnxruntime_mlas.cmake | 14 ++++++++++++++
+ 1 file changed, 14 insertions(+)
+
 diff --git a/cmake/onnxruntime_mlas.cmake b/cmake/onnxruntime_mlas.cmake
-index 15864a01981..5522bb9418d 100644
+index bc64d394b6..38cb5fbcac 100644
 --- a/cmake/onnxruntime_mlas.cmake
 +++ b/cmake/onnxruntime_mlas.cmake
-@@ -63,6 +63,20 @@ endif()
+@@ -83,6 +83,20 @@ endif()
  
  set(ONNXRUNTIME_MLAS_LIBS onnxruntime_mlas)
  
@@ -30,4 +33,3 @@ index 15864a01981..5522bb9418d 100644
  #TODO: set MASM flags properly
  function(setup_mlas_source_for_windows)
  
-
