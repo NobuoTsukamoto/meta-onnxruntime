@@ -4,14 +4,14 @@ Upstream-Status: Pending
  1 file changed, 1 deletion(-)
 
 diff --git a/cmake/onnxruntime_python.cmake b/cmake/onnxruntime_python.cmake
-index de1d7559a1..99fbe692d1 100644
+index f50baf6f99..9726f14dc6 100644
 --- a/cmake/onnxruntime_python.cmake
 +++ b/cmake/onnxruntime_python.cmake
-@@ -228,7 +228,6 @@ target_link_libraries(onnxruntime_pybind11_state PRIVATE
+@@ -235,7 +235,6 @@ target_link_libraries(onnxruntime_pybind11_state PRIVATE
      onnxruntime_common
      onnxruntime_flatbuffers
      ${pybind11_lib}
 -    Python::NumPy
  )
  
- # Starting with Python 3.8 on Windows, PATH environment variable are no longer used to resolve DLL dependencies
+ # The CUDA quantization helpers (pack_weights_for_cuda_mixed_gemm) are built into a

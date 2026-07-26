@@ -4,10 +4,10 @@ Upstream-Status: Pending
  1 file changed, 1 insertion(+)
 
 diff --git a/cmake/external/onnxruntime_external_deps.cmake b/cmake/external/onnxruntime_external_deps.cmake
-index f523fefdd1..da22c79a7e 100644
+index 9edea3042d..eb410a4126 100644
 --- a/cmake/external/onnxruntime_external_deps.cmake
 +++ b/cmake/external/onnxruntime_external_deps.cmake
-@@ -610,6 +610,7 @@ if(onnxruntime_ENABLE_DLPACK)
+@@ -608,6 +608,7 @@ if(onnxruntime_ENABLE_DLPACK)
      EXCLUDE_FROM_ALL
      FIND_PACKAGE_ARGS NAMES dlpack
    )

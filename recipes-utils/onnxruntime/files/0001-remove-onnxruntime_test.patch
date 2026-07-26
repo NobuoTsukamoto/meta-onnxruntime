@@ -4,10 +4,10 @@ Upstream-Status: Pending
  1 file changed, 1 insertion(+), 5 deletions(-)
 
 diff --git a/setup.py b/setup.py
-index 3b8bb9b81d..8733fbe7d1 100644
+index 58aadc75b5..f110b0d5ef 100644
 --- a/setup.py
 +++ b/setup.py
-@@ -896,10 +896,6 @@ setup(
+@@ -912,10 +912,6 @@ setup(
      extras_require=extras_require,
      python_requires=">=3.11",
      keywords="onnx machine learning",
