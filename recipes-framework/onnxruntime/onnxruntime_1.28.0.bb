@@ -175,6 +175,7 @@ do_install:append() {
 
 FILES:${PN}-dev = " \
     ${includedir}/onnxruntime/*.h \
+    ${includedir}/onnxruntime/*.inc \
     ${includedir}/onnxruntime/core/providers/*.h \
     ${libdir}/libonnxruntime.so \
     ${libdir}/pkgconfig/libonnxruntime.pc \
