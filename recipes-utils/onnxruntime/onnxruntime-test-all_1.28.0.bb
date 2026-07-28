@@ -8,42 +8,19 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=0f7e3b1308cb5c00b372a6e78835732d"
 BPV = "${@'.'.join(d.getVar('PV').split('.')[0:2])}"
 DPV = "${@'.'.join(d.getVar('PV').split('.')[0:3])}"
 
-SRCREV = "df2ba1cf8108aa63627cf4cdf8f807880b938616"
+SRCREV_onnxruntime = "da9b5e364c465de65c49d91e696cd6485270757f"
 
-SRC_URI = "git://github.com/microsoft/onnxruntime.git;branch=rel-1.27.1;protocol=https \
+SRC_URI = "git://github.com/microsoft/onnxruntime.git;name=onnxruntime;branch=rel-1.28.0;protocol=https \
            file://0001-arm64-force-mcpu-to-be-valid.patch \
-           file://0001-remove-numpy-dependency-from_cmake.patch \
            file://0001-set-cmake-policy-version-minimul-in-dlpack.patch \
-           file://0001-Set-stack-non-executable-for-onnxruntime_pybind11_st.patch \
            file://0001-remove-onnxruntime_test.patch \
            "
 
-DEPENDS += "\
-    python3-pip-native \
-    python3-wheel-native \
-    python3 \
-    python3-numpy \
-    python3-pybind11 \
-"
-
-RDEPENDS:${PN} += " \
-    python3 \
-    python3-numpy \
-"
-
-inherit cmake python3-dir
+inherit cmake 
 
 OECMAKE_SOURCEPATH = "${S}/cmake"
 
 ONNXRUNTIME_BUILD_DIR = "${WORKDIR}/build/"
-
-PYBIND11_INCLUDE = "${RECIPE_SYSROOT}/${PYTHON_SITEPACKAGES_DIR}/pybind11/pybind11/include"
-NUMPY_INCLUDE = "${RECIPE_SYSROOT}/${PYTHON_SITEPACKAGES_DIR}/numpy/_core/include"
-
-OECMAKE_C_FLAGS += "-I${PYTHON_INCLUDE_DIR} -I${PYBIND11_INCLUDE} -I${NUMPY_INCLUDE}"
-OECMAKE_C_FLAGS_RELEASE += "-I${PYTHON_INCLUDE_DIR} -I${PYBIND11_INCLUDE} -I${NUMPY_INCLUDE}"
-OECMAKE_CXX_FLAGS += "-I${PYTHON_INCLUDE_DIR} -I${PYBIND11_INCLUDE} -I${NUMPY_INCLUDE}"
-OECMAKE_CXX_FLAGS_RELEASE += "-I${PYTHON_INCLUDE_DIR} -I${PYBIND11_INCLUDE} -I${NUMPY_INCLUDE}"
 
 ONNXRUNTIME_TARGET_PLATFORM:x86-64 = "x64"
 ONNXRUNTIME_TARGET_PLATFORM:aarch64 = "ARM64"
@@ -52,17 +29,11 @@ ONNXRUNTIME_TARGET_PLATFORM:riscv64 = "riscv64"
 ONNXRUNTIME_TARGET_PLATFORM ?= ""
 
 EXTRA_OECMAKE:append = " \
-    ${@' -Donnxruntime_target_platform=' + d.getVar('ONNXRUNTIME_TARGET_PLATFORM') if d.getVar('ONNXRUNTIME_TARGET_PLATFORM') else ''} \
-"
-
-EXTRA_OECMAKE:append = " \
     -DCMAKE_CXX_STANDARD=23 \
     -Donnxruntime_RUN_ONNX_TESTS=OFF \
     -Donnxruntime_GENERATE_TEST_REPORTS=ON \
     -Donnxruntime_USE_MIMALLOC=OFF \
-    -Donnxruntime_ENABLE_PYTHON=ON \
-    -DPython_EXECUTABLE=${STAGING_BINDIR_NATIVE}/${PYTHON_PN}-native/${PYTHON_PN} \
-    -DPYTHON_EXECUTABLE=${STAGING_BINDIR_NATIVE}/${PYTHON_PN}-native/${PYTHON_PN} \
+    -Donnxruntime_ENABLE_PYTHON=OFF \
     -Donnxruntime_BUILD_CSHARP=OFF \
     -Donnxruntime_BUILD_JAVA=OFF \
     -Donnxruntime_BUILD_NODEJS=OFF \
@@ -112,7 +83,7 @@ EXTRA_OECMAKE:append = " \
     -Donnxruntime_USE_NCCL=OFF \
     -Donnxruntime_BUILD_BENCHMARKS=OFF \
     -Donnxruntime_USE_ROCM=OFF \
-    -Donnxruntime_GCOV_COVERAGE=OFF \
+    -DOnnxruntime_GCOV_COVERAGE=OFF \
     -Donnxruntime_USE_MPI=OFF \
     -Donnxruntime_ENABLE_MEMORY_PROFILE=OFF \
     -Donnxruntime_ENABLE_CUDA_LINE_NUMBER_INFO=OFF \
@@ -132,21 +103,16 @@ EXTRA_OECMAKE:append = " \
     -Donnxruntime_USE_CANN=OFF \
     -Donnxruntime_USE_TRITON_KERNEL=OFF \
     -Donnxruntime_DISABLE_FLOAT8_TYPES=OFF \
-    -DCMAKE_INSTALL_PREFIX=/usr  \
-    -DCMAKE_TLS_VERIFY=ON -DFETCHCONTENT_QUIET=OFF \
+    --compile-no-warning-as-error \
+    -DCMAKE_TLS_VERIFY=ON \
+    -DFETCHCONTENT_QUIET=OFF \
     -Donnxruntime_ENABLE_MEMLEAK_CHECKER=OFF \
     -DCMAKE_BUILD_TYPE=Release \
+    -DCMAKE_PREFIX_PATH=${WORKDIR}/git/build/Linux/Release/installed \
+    -DCMAKE_SYSTEM_PROCESSOR=${ONNXRUNTIME_TARGET_ARCH} \
     -DMLAS_SOURCE_IS_NOT_SET=OFF \
     -DFETCHCONTENT_FULLY_DISCONNECTED=OFF \
-    -Donnxruntime_BUILD_UNIT_TESTS=OFF \
-"
-
-CXXFLAGS:append = " \
-    -Wno-error=maybe-uninitialized \
-    -Wno-error=uninitialized \
-    -Wno-error=array-bounds \
-    -Wno-error=deprecated-enum-enum-conversion \
-    -Wno-error=free-nonheap-object \
+    -Donnxruntime_BUILD_UNIT_TESTS=ON \
 "
 
 EXTRA_OECMAKE:append:raspberrypi5 = " \
@@ -157,33 +123,24 @@ EXTRA_OECMAKE:append:raspberrypi4-64 = " \
     -Donnxruntime_USE_XNNPACK=OFF \
 "
 
-do_configure[network] = "1"
-
-do_compile:append() {
-    ${STAGING_BINDIR_NATIVE}/${PYTHON_PN}-native/${PYTHON_PN} ${S}/setup.py bdist_wheel
-}
-
-do_install:append() {
-    install -d ${D}/${PYTHON_SITEPACKAGES_DIR}
-
-    TAGING_INCDIR=${STAGING_INCDIR} \
-    STAGING_LIBDIR=${STAGING_LIBDIR} \
-    ${STAGING_BINDIR_NATIVE}/${PYTHON_PN}-native/${PYTHON_PN} -m pip install --disable-pip-version-check -v \
-    -t ${D}/${PYTHON_SITEPACKAGES_DIR} --no-cache-dir --no-deps dist/onnxruntime-${DPV}-*.whl
-    chown -R root:root ${D}${PYTHON_SITEPACKAGES_DIR}
-}
-
-FILES:${PN}-dev = " \
-    ${includedir}/onnxruntime/*.h \
-    ${includedir}/onnxruntime/core/providers/*.h \
-    ${libdir}/libonnxruntime.so \
-    ${libdir}/pkgconfig/libonnxruntime.pc \
-    ${libdir}/cmake/onnxruntime/*.cmake \
+EXTRA_OECMAKE:append:riscv64 = " \
+    -Donnxruntime_USE_XNNPACK=OFF \
 "
 
-FILES:${PN} += "${libdir}/libonnxruntime.so"
-FILES:${PN} += "${libdir}/libonnxruntime.so.*"
-FILES:${PN} += "${libdir}/libonnxruntime_providers_shared.so"
-FILES:${PN} += "${libdir}/python3.*/site-packages/*"
-FILES:${PN} += "${bindir}/onnx_test_runner"
+CMAKE_VERBOSE = "VERBOSE=1"
+
+do_configure[network] = "1"
+
+do_install() {
+    install -d ${D}${datadir}/onnxruntime/test/
+    install -d ${D}${datadir}/onnxruntime/test/testdata
+
+    install -m 0755 ${B}/onnxruntime_test_all ${D}${datadir}/onnxruntime/test/
+    cp -r ${B}/testdata/* ${D}${datadir}/onnxruntime/test/testdata/
+    chown -R root:root ${D}${datadir}/onnxruntime/test/testdata
+}
+
+FILES:${PN} += "${datadir}/onnxruntime/test/onnxruntime_test_all"
+FILES:${PN} += "${datadir}/onnxruntime/test/testdata/*"
 INSANE_SKIP:${PN} += "buildpaths"
+INSANE_SKIP:${PN}-dbg += "buildpaths"

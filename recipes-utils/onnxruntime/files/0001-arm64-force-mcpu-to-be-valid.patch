@@ -1,4 +1,4 @@
-From 69d5aa765d92101ffeb018df31a255b1afc4753a Mon Sep 17 00:00:00 2001
+From 89f7d9416f0a7c643203cebe8fddd4e61b20dfdb Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Cl=C3=A9ment=20P=C3=A9ron?= <peron.clem@gmail.com>
 Date: Thu, 20 Jun 2024 11:54:03 +0200
 Subject: [PATCH] arm64: force -mcpu to be valid
@@ -9,10 +9,10 @@ Upstream-Status: Submitted [https://github.com/microsoft/onnxruntime/pull/21117]
  1 file changed, 14 insertions(+)
 
 diff --git a/cmake/onnxruntime_mlas.cmake b/cmake/onnxruntime_mlas.cmake
-index bc64d394b6..38cb5fbcac 100644
+index 319c897b83..42e175cc1b 100644
 --- a/cmake/onnxruntime_mlas.cmake
 +++ b/cmake/onnxruntime_mlas.cmake
-@@ -83,6 +83,20 @@ endif()
+@@ -84,6 +84,20 @@ endif()
  
  set(ONNXRUNTIME_MLAS_LIBS onnxruntime_mlas)
  
