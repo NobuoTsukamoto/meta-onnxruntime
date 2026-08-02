@@ -1,5 +1,8 @@
 Upstream-Status: Pending
 ---
+ src/beam_search_scorer.cpp | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
 diff --git a/src/beam_search_scorer.cpp b/src/beam_search_scorer.cpp
 index 2b846636..920b32ac 100644
 --- a/src/beam_search_scorer.cpp
