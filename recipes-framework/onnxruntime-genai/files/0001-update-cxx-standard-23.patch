@@ -1,5 +1,8 @@
 Upstream-Status: Pending
 ---
+ cmake/cxx_standard.cmake | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
 diff --git a/cmake/cxx_standard.cmake b/cmake/cxx_standard.cmake
 index 19129825..dadd7b3e 100644
 --- a/cmake/cxx_standard.cmake

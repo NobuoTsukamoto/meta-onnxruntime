@@ -8,14 +8,13 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=d4a904ca135bb7bc912156fee12726f0"
 BPV = "${@'.'.join(d.getVar('PV').split('.')[0:2])}"
 DPV = "${@'.'.join(d.getVar('PV').split('.')[0:3])}"
 
-SRCREV = "b7a6ec307bea84e3b64aa33d59bcad817122d9af"
+SRCREV = "dfdc2548cec851893c10aad5d3056a20116ad749"
 
-SRC_URI = " \
-    git://github.com/microsoft/onnxruntime-genai;branch=rel-0.14.0;protocol=https \
-    file://0001-set-ORT_HEADER_DIR-genai.patch \
-    file://0001-update-cxx-standard-23.patch \
-    file://0001-Fix-ambiguous-cpu_span-constructor-call.patch \
-"
+SRC_URI = "git://github.com/microsoft/onnxruntime-genai;branch=rel-0.15.0;protocol=https \
+           file://0001-set-ORT_HEADER_DIR-genai.patch \
+           file://0001-update-cxx-standard-23.patch \
+           file://0001-Fix-ambiguous-cpu_span-constructor-call.patch \
+           "
 
 SRC_URI:append:riscv64 = " \
     file://0001-add-riscv-architecture-global-variables.patch \
@@ -45,8 +44,6 @@ inherit cmake python3-dir
 
 OECMAKE_SOURCEPATH = "${S}"
 
-ONNXRUNTIME_BUILD_DIR = "${WORKDIR}/build/"
-
 python() {
     d.setVar("PYTHON_VERSION_ORT_GENAI", d.getVar("PYTHON_BASEVERSION").replace(".", "").replace(",", ""))
 }
@@ -62,6 +59,7 @@ EXTRA_OECMAKE:append = " \
     -DENABLE_PYTHON=ON \
     -DUSE_GUIDANCE=OFF \
     -DENABLE_TESTS=OFF \
+    -DENABLE_TELEMETRY=OFF \
     -DORT_HOME=${RECIPE_SYSROOT}/usr \
     -DPYTHON_EXECUTABLE=${STAGING_BINDIR_NATIVE}/${PYTHON_PN}-native/${PYTHON_PN} \
     -DPython_EXECUTABLE=${STAGING_BINDIR_NATIVE}/${PYTHON_PN}-native/${PYTHON_PN} \
@@ -73,7 +71,7 @@ do_configure[network] = "1"
 do_compile[network] = "1"
 
 do_compile:append() {
-    cd ${WORKDIR}/build/wheel
+    cd ${B}/wheel
     ${STAGING_BINDIR_NATIVE}/${PYTHON_PN}-native/${PYTHON_PN} -m pip wheel --no-deps .
 }
 
@@ -107,6 +105,7 @@ FILES:${PN} += " \
 
 FILES:${PN}-dev = " \
     ${includedir}/*.h \
+    ${libdir}/cmake/onnxruntime-genai/* \
 "
 
 INSANE_SKIP:${PN} += "buildpaths already-stripped"

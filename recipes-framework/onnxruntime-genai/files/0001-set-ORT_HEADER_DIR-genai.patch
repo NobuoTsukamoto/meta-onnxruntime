@@ -1,5 +1,8 @@
 Upstream-Status: Pending
 ---
+ cmake/ortlib.cmake | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
 diff --git a/cmake/ortlib.cmake b/cmake/ortlib.cmake
 index 65a48aae..b900f073 100644
 --- a/cmake/ortlib.cmake
