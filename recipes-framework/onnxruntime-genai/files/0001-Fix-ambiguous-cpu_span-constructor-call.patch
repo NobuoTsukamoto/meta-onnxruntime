@@ -4,7 +4,7 @@ Upstream-Status: Pending
  1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/src/beam_search_scorer.cpp b/src/beam_search_scorer.cpp
-index 2b846636..920b32ac 100644
+index ffb0d5b7..d17cb4b1 100644
 --- a/src/beam_search_scorer.cpp
 +++ b/src/beam_search_scorer.cpp
 @@ -133,7 +133,7 @@ void BeamSearchScorer::Process(Sequences& sequences,
