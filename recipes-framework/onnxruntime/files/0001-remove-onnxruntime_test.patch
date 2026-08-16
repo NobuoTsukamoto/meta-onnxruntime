@@ -1,3 +1,8 @@
+From fdc83b5bc1c0b50641fa022455951f55cefa58b3 Mon Sep 17 00:00:00 2001
+From: Nobuo Tsukamoto <nextremer.nb.o@gmail.com>
+Date: Tue, 30 Apr 2024 20:09:54 +0900
+Subject: [PATCH] Fixed onnxruntime QA Issue. (#1)
+
 Upstream-Status: Pending
 ---
  setup.py | 6 +-----
