@@ -17,10 +17,10 @@ on:
 
 env:
   TARGET_VERSION: master
-  WORKING_DIR: /home/runner/work
+  WORKING_DIR: /mnt/work
   BUILD_DIR: /mnt/build
-  DOWNLOAD_DIR: /home/runner/downloads
-  SSTATE_DIR: /mnt/build/sstate-cache
+  DOWNLOAD_DIR: /mnt/downloads
+  SSTATE_DIR: /mnt/sstate-cache
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -74,9 +74,11 @@ jobs:
           sudo apt-get clean
           sudo apt-get autoclean -y
 
+      # Prepare /mnt directory structure
       - name: Prepare build directory
         run: |
           sudo chown -R runner:docker /mnt
+          mkdir -p ${WORKING_DIR}
           mkdir -p ${BUILD_DIR}
           mkdir -p ${DOWNLOAD_DIR}
           mkdir -p ${SSTATE_DIR}
@@ -109,12 +111,11 @@ jobs:
           echo DL_DIR ?= \"${DOWNLOAD_DIR}\" >> conf/local.conf
           echo SSTATE_DIR ?= \"${SSTATE_DIR}\" >> conf/local.conf
           echo 'INHERIT += "rm_work"' >> conf/local.conf
-          echo 'OEQA_BUILDPATHS_SKIP = "/home/runner"' >> conf/local.conf
           echo PREFERRED_VERSION_onnxruntime = \"${{ matrix.onnxruntime_version }}\" >> conf/local.conf
           echo PREFERRED_VERSION_onnxruntime-genai = \"${{ matrix.onnxruntime_genai_version }}\" >> conf/local.conf
           bitbake-layers add-layer ${WORKING_DIR}/meta-openembedded/meta-oe/
           bitbake-layers add-layer ${WORKING_DIR}/meta-openembedded/meta-python/
-          bitbake-layers add-layer ${WORKING_DIR}/meta-onnxruntime/meta-onnxruntime/
+          bitbake-layers add-layer ${GITHUB_WORKSPACE}
           bitbake-layers add-layer ${WORKING_DIR}/meta-raspberrypi/
           MACHINE=${{matrix.target_machine}} bitbake onnxruntime  onnxruntime-genai onnxruntime-genai-python-example
 
