@@ -111,6 +111,7 @@ jobs:
           echo DL_DIR ?= \"${DOWNLOAD_DIR}\" >> conf/local.conf
           echo SSTATE_DIR ?= \"${SSTATE_DIR}\" >> conf/local.conf
           echo 'INHERIT += "rm_work"' >> conf/local.conf
+          echo "OEQA_BUILDPATHS_SKIP = \"${HOME}\"" >> conf/local.conf
           echo PREFERRED_VERSION_onnxruntime = \"${{ matrix.onnxruntime_version }}\" >> conf/local.conf
           echo PREFERRED_VERSION_onnxruntime-genai = \"${{ matrix.onnxruntime_genai_version }}\" >> conf/local.conf
           bitbake-layers add-layer ${WORKING_DIR}/meta-openembedded/meta-oe/
