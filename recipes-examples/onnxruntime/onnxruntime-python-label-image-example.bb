@@ -1,4 +1,4 @@
-ESCRIPTION = "Run the ONNX Runtime session creation and inference API"
+DESCRIPTION = "Run the ONNX Runtime session creation and inference API"
 LICENSE = "MIT"
 
 LIC_FILES_CHKSUM = "file://LICENSE;md5=e7edd1136ca484dbfa5dec5cbd785460"
