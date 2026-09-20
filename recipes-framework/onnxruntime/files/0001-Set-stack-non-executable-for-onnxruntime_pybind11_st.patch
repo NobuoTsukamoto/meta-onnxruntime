@@ -1,4 +1,4 @@
-From 6394572d2b0e9b65344b65ef315edf2d445164d6 Mon Sep 17 00:00:00 2001
+From ef13e87d1330d1debc0ca8640576533d4a828513 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Zolt=C3=A1n=20B=C3=B6sz=C3=B6rm=C3=A9nyi?=
  <zboszor@gmail.com>
 Date: Wed, 18 Feb 2026 13:24:58 +0100
@@ -14,7 +14,7 @@ Upstream-Status: Submitted [https://github.com/microsoft/onnxruntime/pull/27377]
  1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/cmake/onnxruntime_python.cmake b/cmake/onnxruntime_python.cmake
-index 9726f14dc6..14d6f5b346 100644
+index 88382ee0e0..e1d1dcd223 100644
 --- a/cmake/onnxruntime_python.cmake
 +++ b/cmake/onnxruntime_python.cmake
 @@ -142,10 +142,10 @@ if(APPLE)

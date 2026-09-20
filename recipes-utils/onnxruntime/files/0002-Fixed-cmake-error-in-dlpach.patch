@@ -1,18 +1,13 @@
-From db9638437b7dd322bcfb89f2bf6300fd6dca6e64 Mon Sep 17 00:00:00 2001
-From: Nobuo Tsukamoto <nextremer.nb.o@gmail.com>
-Date: Thu, 31 Jul 2025 10:58:04 +0900
-Subject: [PATCH] Fixed cmake error in dlpach.
-
 Upstream-Status: Pending
 ---
  cmake/external/onnxruntime_external_deps.cmake | 1 +
  1 file changed, 1 insertion(+)
 
 diff --git a/cmake/external/onnxruntime_external_deps.cmake b/cmake/external/onnxruntime_external_deps.cmake
-index e3b7539664..a9e7fe481b 100644
+index 7646f3aa83..23dcfe10cf 100644
 --- a/cmake/external/onnxruntime_external_deps.cmake
 +++ b/cmake/external/onnxruntime_external_deps.cmake
-@@ -609,6 +609,7 @@ if(onnxruntime_ENABLE_DLPACK)
+@@ -620,6 +620,7 @@ if(onnxruntime_ENABLE_DLPACK)
      EXCLUDE_FROM_ALL
      FIND_PACKAGE_ARGS NAMES dlpack
    )

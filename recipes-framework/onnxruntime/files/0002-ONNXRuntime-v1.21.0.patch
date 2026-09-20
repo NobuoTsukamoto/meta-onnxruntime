@@ -1,15 +1,10 @@
-From 30f66ef42a5fff732a94e538c4791ce6ba05af8e Mon Sep 17 00:00:00 2001
-From: Nobuo Tsukamoto <nextremer.nb.o@gmail.com>
-Date: Sun, 16 Mar 2025 21:40:03 +0900
-Subject: [PATCH] ONNXRuntime v1.21.0
-
 Upstream-Status: Pending
 ---
  cmake/onnxruntime_python.cmake | 1 -
  1 file changed, 1 deletion(-)
 
 diff --git a/cmake/onnxruntime_python.cmake b/cmake/onnxruntime_python.cmake
-index f50baf6f99..9726f14dc6 100644
+index c89f8845a1..88382ee0e0 100644
 --- a/cmake/onnxruntime_python.cmake
 +++ b/cmake/onnxruntime_python.cmake
 @@ -235,7 +235,6 @@ target_link_libraries(onnxruntime_pybind11_state PRIVATE
