@@ -16,7 +16,10 @@ SRC_URI = "git://github.com/microsoft/onnxruntime.git;name=onnxruntime;branch=re
            file://0003-Fixed-onnxruntime-QA-Issue.-1.patch \
            "
 
-inherit cmake 
+# Generated with scripts/update-onnxruntime-deps.py ${PV}
+require conf/onnxruntime-deps-${PV}.inc
+
+inherit cmake onnxruntime-offline-deps
 
 OECMAKE_SOURCEPATH = "${S}/cmake"
 
@@ -128,8 +131,6 @@ EXTRA_OECMAKE:append:riscv64 = " \
 "
 
 CMAKE_VERBOSE = "VERBOSE=1"
-
-do_configure[network] = "1"
 
 do_install() {
     install -d ${D}${datadir}/onnxruntime/test/
