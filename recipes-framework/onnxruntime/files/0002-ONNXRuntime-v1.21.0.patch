@@ -4,7 +4,7 @@ Upstream-Status: Pending
  1 file changed, 1 deletion(-)
 
 diff --git a/cmake/onnxruntime_python.cmake b/cmake/onnxruntime_python.cmake
-index c89f8845a1..88382ee0e0 100644
+index 4313651471..c6a6ee1997 100644
 --- a/cmake/onnxruntime_python.cmake
 +++ b/cmake/onnxruntime_python.cmake
 @@ -235,7 +235,6 @@ target_link_libraries(onnxruntime_pybind11_state PRIVATE

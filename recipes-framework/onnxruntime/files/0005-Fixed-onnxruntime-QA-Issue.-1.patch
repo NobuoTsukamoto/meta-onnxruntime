@@ -4,7 +4,7 @@ Upstream-Status: Pending
  1 file changed, 1 insertion(+), 5 deletions(-)
 
 diff --git a/setup.py b/setup.py
-index 58aadc75b5..f110b0d5ef 100644
+index fcde855cf2..99a03ad4e1 100644
 --- a/setup.py
 +++ b/setup.py
 @@ -912,10 +912,6 @@ setup(

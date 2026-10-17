@@ -14,7 +14,7 @@ Upstream-Status: Submitted [https://github.com/microsoft/onnxruntime/pull/27377]
  1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/cmake/onnxruntime_python.cmake b/cmake/onnxruntime_python.cmake
-index 88382ee0e0..e1d1dcd223 100644
+index 2c8ff75677..4313651471 100644
 --- a/cmake/onnxruntime_python.cmake
 +++ b/cmake/onnxruntime_python.cmake
 @@ -142,10 +142,10 @@ if(APPLE)
