@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+# Copyright (c) 2026, Snap Inc.
+# SPDX-License-Identifier: MIT
+
 """Generate conf/onnxruntime-deps-<version>.inc for an ONNX Runtime release.
 
 ONNX Runtime downloads its third-party dependencies with CMake FetchContent

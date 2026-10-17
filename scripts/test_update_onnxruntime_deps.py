@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+# Copyright (c) 2026, Snap Inc.
+# SPDX-License-Identifier: MIT
+
 """Unit tests for update-onnxruntime-deps.py, they do not need network access.
 
 Usage: python3 -m unittest discover -s scripts
