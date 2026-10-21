@@ -70,3 +70,51 @@ IMAGE_INSTALL:append = " onnxruntime"
 # Build
 $ bitbake core-image-weston
 ```
+
+## Third-party dependencies of ONNX Runtime
+
+ONNX Runtime downloads its third-party dependencies (abseil, protobuf, onnx, ...)
+with CMake `FetchContent` while configuring. To avoid bypassing the bitbake
+fetcher, the `onnxruntime` and `onnxruntime-test-all` recipes list these
+dependencies in `SRC_URI` instead, so that they benefit from mirrors, `DL_DIR`
+and pinned revisions, and `do_configure` does not need network access.
+
+### How it works
+
+- `conf/onnxruntime-deps-<version>.inc` is included by the recipes with
+  `require conf/onnxruntime-deps-${PV}.inc`. It is generated, do not edit it.
+  - Dependencies hosted in a GitHub repository are fetched with the git fetcher,
+    pinned with `SRCREV_<name>`, and listed in `ORT_DEPS_GIT`.
+  - Other dependencies (the protobuf sources and the `protoc` binaries) are fetched
+    as files, pinned with `SRC_URI[<name>.sha256sum]`, and listed in `ORT_DEPS_FILES`.
+- [`classes-recipe/onnxruntime-offline-deps.bbclass`](classes-recipe/onnxruntime-offline-deps.bbclass)
+  rewrites `cmake/deps.txt` in `do_configure` so that each dependency is a
+  `file://` URL of the fetched sources (for git dependencies, an archive created
+  from the checkout and its SHA1). CMake therefore still downloads, checks and
+  patches the dependencies like upstream does, but nothing is fetched from the
+  network.
+
+### Updating ONNX Runtime
+
+When adding a recipe for a new ONNX Runtime version:
+
+```
+$ scripts/update-onnxruntime-deps.py <version>
+```
+
+This reads `cmake/deps.txt` of the `v<version>` release, resolves the git tags to
+commits with `git ls-remote`, downloads the other files to check their SHA1 against
+`deps.txt` and compute their SHA256, and writes `conf/onnxruntime-deps-<version>.inc`.
+Then make the recipes `require conf/onnxruntime-deps-${PV}.inc` and
+`inherit onnxruntime-offline-deps`. Network access is only needed to run the script.
+
+The list of dependencies that the recipes need is `DEPS` in the script. It depends
+on the build configuration (`EXTRA_OECMAKE`), not on the release. If `do_configure`
+fails with a download error after an update, a new dependency is needed: add its
+name from `cmake/deps.txt` to `DEPS` and run the script again.
+
+The unit tests of the script do not need network access:
+
+```
+$ python3 -m unittest discover -s scripts
+```

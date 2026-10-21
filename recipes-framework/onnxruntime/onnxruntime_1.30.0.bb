@@ -18,6 +18,9 @@ SRC_URI = "git://github.com/microsoft/onnxruntime.git;branch=rel-1.30.0;protocol
            file://0005-Fixed-onnxruntime-QA-Issue.-1.patch \
            "
 
+# Generated with scripts/update-onnxruntime-deps.py ${PV}
+require conf/onnxruntime-deps-${PV}.inc
+
 DEPENDS += "\
     python3-pip-native \
     python3-wheel-native \
@@ -31,7 +34,7 @@ RDEPENDS:${PN} += " \
     python3-numpy \
 "
 
-inherit cmake python3-dir
+inherit cmake python3-dir onnxruntime-offline-deps
 
 OECMAKE_SOURCEPATH = "${S}/cmake"
 
@@ -156,8 +159,6 @@ EXTRA_OECMAKE:append:raspberrypi5 = " \
 EXTRA_OECMAKE:append:raspberrypi4-64 = " \
     -Donnxruntime_USE_XNNPACK=OFF \
 "
-
-do_configure[network] = "1"
 
 do_compile:append() {
     ${STAGING_BINDIR_NATIVE}/${PYTHON_PN}-native/${PYTHON_PN} ${S}/setup.py bdist_wheel
