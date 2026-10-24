@@ -10,7 +10,7 @@ dependencies of cmake/deps.txt of the release into SRC_URI entries: GitHub
 archives become git entries pinned with SRCREV (the tag is resolved with
 git ls-remote), anything else is a download pinned with a sha256 checksum.
 
-Usage: scripts/update-onnxruntime-deps.py 1.30.0
+Usage: scripts/update-onnxruntime-deps.py 1.31.0
 """
 
 import hashlib

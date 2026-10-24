@@ -8,9 +8,9 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=0f7e3b1308cb5c00b372a6e78835732d"
 BPV = "${@'.'.join(d.getVar('PV').split('.')[0:2])}"
 DPV = "${@'.'.join(d.getVar('PV').split('.')[0:3])}"
 
-SRCREV = "f2c39fe2f838cf35ce7da92824f5a5e3ee6e88a7"
+SRCREV = "402979ac1bef89dcd55add41eaa7277c407599eb"
 
-SRC_URI = "git://github.com/microsoft/onnxruntime.git;branch=rel-1.30.0;protocol=https \
+SRC_URI = "git://github.com/microsoft/onnxruntime.git;branch=rel-1.31.0;protocol=https \
            file://0001-arm64-force-mcpu-to-be-valid.patch \
            file://0001-Set-stack-non-executable-for-onnxruntime_pybind11_st.patch \
            file://0002-ONNXRuntime-v1.21.0.patch \
