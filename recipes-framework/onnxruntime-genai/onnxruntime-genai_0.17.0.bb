@@ -14,6 +14,7 @@ SRC_URI = "git://github.com/microsoft/onnxruntime-genai;branch=rel-0.17.0;protoc
            file://0001-set-ORT_HEADER_DIR-genai.patch \
            file://0001-update-cxx-standard-23.patch \
            file://0001-Fix-ambiguous-cpu_span-constructor-call.patch \
+           file://0002-use-ort-1.31-stable-model-package-api.patch \
            "
 
 SRC_URI:append:riscv64 = " \
