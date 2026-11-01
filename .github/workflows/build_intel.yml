@@ -76,6 +76,8 @@ jobs:
         run: |
           sudo mkdir -p ${BUILD_DIR}
           sudo chown runner ${BUILD_DIR}
+          ls -al /home/runner/work/meta-onnxruntime
+          ls -al /home/runner/work/meta-onnxruntime/meta-onnxruntime
 
       - name: Restore cache
         id: ccache-restore
