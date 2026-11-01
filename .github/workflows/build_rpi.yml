@@ -49,6 +49,7 @@ jobs:
           df -h
           sudo rm -rf /opt/* || true
           sudo rm -rf /usr/share/dotnet || true
+          sudo rm -rf "$AGENT_TOOLSDIRECTORY" || true
           sudo rm -rf /usr/local/lib/android || true
           sudo rm -rf /usr/local/share/boost || true
           sudo rm -rf /usr/lib/jvm || true
