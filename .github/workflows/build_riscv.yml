@@ -79,7 +79,7 @@ jobs:
 
       - name: Restore cache
         id: ccache-restore
-        uses: actions/cache/restore@v4
+        uses: actions/cache/restore@v6
         with:
           path: |
             ${{ env.SSTATE_DIR }}
