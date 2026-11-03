@@ -47,7 +47,7 @@ jobs:
         run: |
           echo "=== Disk space before cleanup ==="
           df -h
-          sudo rm -rf /opt/* || true
+          sudo rm -rf /opt/az /opt/hostedtoolcache /opt/microsoft /opt/pipx || true
           sudo rm -rf /usr/share/dotnet || true
           sudo rm -rf "$AGENT_TOOLSDIRECTORY" || true
           sudo rm -rf /usr/local/lib/android || true
